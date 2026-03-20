@@ -17,3 +17,14 @@ Community Circles allow users to join accountability groups focused on specific 
 - **Circle Creation**: Users can define their own groups and focus areas.
 - **Discussion Threads**: Nested messaging for growth accountability.
 - **Member Directory**: See who else is part of your growth ecosystem.
+
+### 4.1 Circle Discovery & Joining Flow
+
+```mermaid
+graph LR
+    A[Browse DiscoverCircles] --> B{Interesting Circle?}
+    B -- Yes --> C[Click Join]
+    C --> D[Update MyCircles]
+    D --> E[Enter Circle Chat]
+    B -- No --> A
+```

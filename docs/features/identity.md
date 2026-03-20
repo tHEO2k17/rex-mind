@@ -15,3 +15,15 @@ The Identity Builder is the heart of RexMind. It allows users to design their "F
 
 ## 4. State Management
 - **identitySlice**: Persists the user's focus and core metrics in Redux for cross-dashboard usage.
+
+### 4.1 Identity Alignment Logic
+
+```mermaid
+graph TD
+    A[User Actions/Habits] --> B{AI Analysis}
+    B --> C[Trait Verification]
+    B --> D[Goal Progress Tracking]
+    C --> E[Alignment Score Calculation]
+    D --> E
+    E --> F[Dashboard Visualization]
+```

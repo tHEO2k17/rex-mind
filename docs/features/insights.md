@@ -17,3 +17,15 @@ The Insights feature provides users with AI-analyzed cognitive patterns based on
 - **Habit Strength**: Likelihood of a habit sticking over time.
 - **Productivity Score**: Normalized efficiency across task completion.
 - **Stress Level**: Correlation between work density and recovery.
+
+### 4.1 Insight Generation Flow
+
+```mermaid
+graph TD
+    A[Raw Activity Data] --> B[Pattern Recognition Engine]
+    B --> C{Signal Detected?}
+    C -- Positive --> D[Generate Reinforcement Insight]
+    C -- Warning --> E[Generate Course Correction]
+    D --> F[Display in InsightsView]
+    E --> F
+```
