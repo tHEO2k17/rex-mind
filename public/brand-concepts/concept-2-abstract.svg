@@ -1,0 +1,14 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="#0A0A0B"/>
+  
+  <!-- Central Signal (The Core / Clarity) -->
+  <rect x="188" y="90" width="24" height="220" fill="#D6FF00" rx="4"/>
+  
+  <!-- Inner order / Regulation -->
+  <path d="M 150 130 V 270" stroke="#E5E7EB" stroke-width="12" stroke-linecap="round"/>
+  <path d="M 250 130 V 270" stroke="#E5E7EB" stroke-width="12" stroke-linecap="round"/>
+  
+  <!-- Outer boundary / Noise fading out -->
+  <path d="M 110 170 V 230" stroke="#4B5563" stroke-width="12" stroke-linecap="round"/>
+  <path d="M 290 170 V 230" stroke="#4B5563" stroke-width="12" stroke-linecap="round"/>
+</svg>

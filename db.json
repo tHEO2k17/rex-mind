@@ -1,0 +1,330 @@
+{
+  "users": [
+    {
+      "name": "Theophilus Paintsil",
+      "email": "tpee935@gmail.com",
+      "password": "Anthea@626",
+      "id": 1
+    }
+  ],
+  "insights": [
+    {
+      "id": 1,
+      "title": "Deep Work Pattern",
+      "description": "You avoid difficult tasks late in the afternoon.",
+      "recommendation": "Schedule high-cognitive tasks before 12 PM."
+    }
+  ],
+  "talents": [
+    {
+      "id": 1,
+      "name": "Strategic Thinking",
+      "confidence": 82
+    },
+    {
+      "id": 2,
+      "name": "Systems Architect",
+      "confidence": 76
+    },
+    {
+      "id": 3,
+      "name": "Leadership Potential",
+      "confidence": 70
+    }
+  ],
+  "identity": {
+    "identityName": "TheoRex Elite",
+    "visionStatement": "I am a disciplined leader who builds transformative systems that empower others to reach their full potential. I approach every challenge with strategic thinking and unwavering resilience. Excellence is the standard.",
+    "traits": [
+      "Disciplined",
+      "Strategic thinker",
+      "Visionary leader",
+      "Resilient",
+      "Creative problem solver"
+    ],
+    "goals": [
+      {
+        "title": "Build a successful company",
+        "progress": 45
+      },
+      {
+        "title": "Master emotional intelligence",
+        "progress": 60
+      },
+      {
+        "title": "Develop daily discipline routine",
+        "progress": 75
+      }
+    ]
+  },
+  "mentor": {
+    "messages": [
+      {
+        "id": 1,
+        "role": "assistant",
+        "content": "Hello Theo! I'm your AI mentor. Based on your recent activity, I noticed you've been making great progress on your morning routines. However, I see an opportunity to optimize your afternoon productivity. Would you like to explore some strategies?",
+        "timestamp": "10:30 AM"
+      }
+    ],
+    "history": [
+      {
+        "title": "Morning Routine Optimization",
+        "date": "Today"
+      },
+      {
+        "title": "Deep Work Strategies",
+        "date": "Yesterday"
+      }
+    ]
+  },
+  "challenges": {
+    "active": [
+      {
+        "title": "7-Day Discipline Reset",
+        "description": "Build foundational habits through daily micro-commitments.",
+        "duration": "7 days",
+        "difficulty": "Beginner",
+        "progress": 4,
+        "total": 7,
+        "tasks": [
+          {
+            "name": "Morning journaling",
+            "completed": true
+          },
+          {
+            "name": "Deep work block",
+            "completed": false
+          }
+        ]
+      }
+    ],
+    "available": [
+      {
+        "title": "14-Day Focus Challenge",
+        "description": "Eliminate distractions and build deep work capacity through progressive focus sessions.",
+        "duration": "14 days",
+        "difficulty": "Intermediate",
+        "benefits": [
+          "Increased concentration",
+          "Better task completion"
+        ]
+      }
+    ],
+    "completed": [
+      {
+        "title": "Sleep Optimization",
+        "completedDate": "Feb 20, 2024",
+        "duration": "7 days"
+      }
+    ]
+  },
+  "community": {
+    "myCircles": [
+      {
+        "name": "Builders Circle",
+        "focus": "Productivity and execution",
+        "members": 24,
+        "recentTopic": "How to maintain focus during long coding sessions",
+        "activity": "Active now",
+        "isActive": true
+      }
+    ],
+    "discoverCircles": [
+      {
+        "name": "Morning Routines",
+        "focus": "Building optimal morning habits",
+        "members": 156,
+        "description": "A community dedicated to perfecting the first hours of the day for maximum productivity."
+      }
+    ],
+    "recentDiscussions": [
+      {
+        "circle": "Builders Circle",
+        "author": "Marcus J.",
+        "topic": "Shipped my first feature after the sprint challenge",
+        "replies": 12,
+        "time": "30 min ago"
+      }
+    ]
+  },
+  "insights_data": {
+    "patterns": [
+      {
+        "type": "warning",
+        "title": "Afternoon Energy Dip",
+        "description": "You consistently experience lower productivity between 2-4 PM. Task completion rate drops by 35% during this window.",
+        "action": "Schedule creative or low-effort tasks during this period. Consider a short walk or meditation break.",
+        "category": "Productivity"
+      },
+      {
+        "type": "positive",
+        "title": "Morning Peak Performance",
+        "description": "Your best work happens between 9-11 AM. Problem-solving accuracy is 40% higher during morning hours.",
+        "action": "Block this time for your most challenging tasks and deep work sessions.",
+        "category": "Productivity"
+      },
+      {
+        "type": "warning",
+        "title": "Task Avoidance Pattern",
+        "description": "Complex tasks are often postponed when they require more than 2 hours of focused attention.",
+        "action": "Break large tasks into 45-minute chunks with clear milestones.",
+        "category": "Habits"
+      },
+      {
+        "type": "neutral",
+        "title": "Social Recharge Need",
+        "description": "Your energy levels improve after meaningful conversations, suggesting you may be more extroverted than you realize.",
+        "action": "Schedule at least one meaningful connection daily to maintain energy levels.",
+        "category": "Energy"
+      }
+    ],
+    "habitLoops": [
+      {
+        "habit": "Morning journaling",
+        "trigger": "After coffee",
+        "streak": 14,
+        "status": "active"
+      },
+      {
+        "habit": "Evening reflection",
+        "trigger": "Before sleep",
+        "streak": 7,
+        "status": "active"
+      },
+      {
+        "habit": "Deep work block",
+        "trigger": "9 AM",
+        "streak": 3,
+        "status": "building"
+      }
+    ],
+    "stressSignals": [
+      {
+        "signal": "Increased task switching",
+        "frequency": "3 times this week",
+        "severity": "medium"
+      },
+      {
+        "signal": "Shorter response times",
+        "frequency": "5 times this week",
+        "severity": "low"
+      }
+    ],
+    "productivityStats": [
+      {
+        "label": "Focus Time",
+        "value": "4.2h",
+        "change": "+12%"
+      },
+      {
+        "label": "Tasks Completed",
+        "value": "23",
+        "change": "+8%"
+      },
+      {
+        "label": "Deep Work Sessions",
+        "value": "8",
+        "change": "+25%"
+      },
+      {
+        "label": "Flow States",
+        "value": "5",
+        "change": "+40%"
+      }
+    ]
+  },
+  "detailed_talents": [
+    {
+      "id": 1,
+      "name": "Systems Architect",
+      "confidence": 84,
+      "description": "You excel at structuring complex systems and seeing the big picture. Your ability to connect disparate elements into coherent frameworks is exceptional.",
+      "developmentPath": [
+        "Study system dynamics and complexity theory",
+        "Practice creating visual system maps",
+        "Lead cross-functional projects"
+      ],
+      "status": "high"
+    },
+    {
+      "id": 2,
+      "name": "Strategic Thinking",
+      "confidence": 82,
+      "description": "You naturally think several steps ahead and can anticipate consequences of decisions. This talent manifests in your planning and problem-solving approaches.",
+      "developmentPath": [
+        "Study game theory and decision frameworks",
+        "Practice scenario planning exercises",
+        "Mentor others in strategic thinking"
+      ],
+      "status": "high"
+    },
+    {
+      "id": 3,
+      "name": "Leadership Potential",
+      "confidence": 76,
+      "description": "You show natural inclination to guide and inspire others. Your communication style and empathy create trust and followership.",
+      "developmentPath": [
+        "Take on more team leadership roles",
+        "Study emotional intelligence",
+        "Practice giving constructive feedback"
+      ],
+      "status": "medium"
+    },
+    {
+      "id": 4,
+      "name": "Creative Problem Solving",
+      "confidence": 71,
+      "description": "You approach challenges with unconventional thinking and can generate novel solutions that others might miss.",
+      "developmentPath": [
+        "Practice lateral thinking exercises",
+        "Expose yourself to diverse disciplines",
+        "Keep an idea journal"
+      ],
+      "status": "medium"
+    },
+    {
+      "id": 5,
+      "name": "Analytical Reasoning",
+      "confidence": 68,
+      "description": "You have a strong capacity for breaking down complex information and drawing logical conclusions from data.",
+      "developmentPath": [
+        "Practice data analysis projects",
+        "Study formal logic and reasoning",
+        "Build analytical dashboards"
+      ],
+      "status": "medium"
+    },
+    {
+      "id": 6,
+      "name": "Communication Clarity",
+      "confidence": 62,
+      "description": "You can articulate complex ideas in simple terms, making you effective at teaching and persuading others.",
+      "developmentPath": [
+        "Practice public speaking",
+        "Write explanatory content regularly",
+        "Study rhetoric and persuasion"
+      ],
+      "status": "developing"
+    }
+  ],
+  "settings": {
+    "profile": {
+      "firstName": "Theo",
+      "lastName": "Paintsil",
+      "email": "tpee935@gmail.com",
+      "timezone": "Greenwich Mean Time (GMT)"
+    },
+    "notifications": {
+      "dailyInsights": true,
+      "challengeReminders": true,
+      "communityUpdates": true,
+      "weeklySummary": false,
+      "marketingEmails": false
+    },
+    "privacy": {
+      "publicProfile": true,
+      "showProgress": false,
+      "aiLearning": true
+    }
+  }
+}

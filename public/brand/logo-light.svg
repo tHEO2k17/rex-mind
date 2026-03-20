@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="100%" height="100%">
+  <g transform="translate(40, 0)">
+    <path d="M 130 110 V 290 M 130 110 H 220 C 264 110 264 190 220 190 H 130 M 180 190 L 240 290" 
+          stroke="#111827" stroke-width="40" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="280" cy="90" r="20" fill="#D6FF00"/>
+  </g>
+  <text x="360" y="260" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="180" font-weight="800" fill="#111827" letter-spacing="-5">
+    Rex<tspan fill="#D6FF00">Mind</tspan>
+  </text>
+</svg>

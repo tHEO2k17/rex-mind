@@ -1,0 +1,9 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="#0A0A0B"/>
+  <g transform="translate(10, 0)">
+    <!-- The Structured 'R' -->
+    <path d="M 140 100 V 300 M 140 100 H 240 L 260 120 V 180 L 240 200 H 140 M 200 200 L 260 300" stroke="#F3F4F6" stroke-width="32" fill="none" stroke-linejoin="miter" stroke-linecap="square"/>
+    <!-- The Precision Accent (The 'Mind' / The Spark) -->
+    <rect x="264" y="68" width="24" height="24" fill="#D6FF00"/>
+  </g>
+</svg>
