@@ -1,16 +1,15 @@
-import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '@/shared/store/hooks';
-import { fetchTalents } from '../model/talentsSlice';
+import { fetchTalents } from "../model/talentsSlice";
+import { DetailedTalent } from "../model/types";
+import { useFeatureData } from "@/shared/hooks/useFeatureData";
 
 export const useTalentsViewModel = () => {
-  const dispatch = useAppDispatch();
-  const { talents, isLoading, error } = useAppSelector((state) => state.talents);
-
-  useEffect(() => {
-    if (talents.length === 0 && !isLoading) {
-      dispatch(fetchTalents());
-    }
-  }, [dispatch, talents.length, isLoading]);
-
-  return { talents, isLoading, error };
+  const { data, isLoading, error } = useFeatureData<DetailedTalent[]>({
+    selector: (state) => ({
+      data: state.talents.talents,
+      isLoading: state.talents.isLoading,
+      error: state.talents.error,
+    }),
+    fetchAction: fetchTalents,
+  });
+  return { talents: data || [], isLoading, error };
 };

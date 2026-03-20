@@ -1,18 +1,12 @@
-import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '@/shared/store/hooks';
-import { fetchCommunityData, seedCommunityData } from '../model/communitySlice';
+import { fetchCommunityData, seedCommunityData } from "../model/communitySlice";
+import { CommunityData } from "../model/types";
+import { useFeatureData } from "@/shared/hooks/useFeatureData";
 
-export const useCommunityViewModel = (initialData?: any) => {
-  const dispatch = useAppDispatch();
-  const { data, isLoading, error } = useAppSelector((state) => state.community);
-
-  useEffect(() => {
-    if (initialData && !data) {
-      dispatch(seedCommunityData(initialData));
-    } else if (!data && !isLoading) {
-      dispatch(fetchCommunityData());
-    }
-  }, [dispatch, data, isLoading, initialData]);
-
-  return { data, isLoading, error };
+export const useCommunityViewModel = (initialData?: CommunityData) => {
+  return useFeatureData<CommunityData>({
+    selector: (state) => state.community,
+    fetchAction: fetchCommunityData,
+    seedAction: seedCommunityData,
+    initialData,
+  });
 };

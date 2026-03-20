@@ -1,26 +1,23 @@
-"use client"
-
-import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '@/shared/store/hooks';
-import { fetchSettings, updateSettings } from '../model/settingsSlice';
-import { SettingsData } from '../model/types';
+import { fetchSettings, updateSettings } from "../model/settingsSlice";
+import { SettingsData } from "../model/types";
+import { useFeatureData } from "@/shared/hooks/useFeatureData";
+import { useAppDispatch } from "@/shared/store/hooks";
 
 export const useSettingsViewModel = () => {
   const dispatch = useAppDispatch();
-  const settings = useAppSelector((state) => state.settings);
-
-  useEffect(() => {
-    if (!settings.data && !settings.isLoading) {
-      dispatch(fetchSettings());
-    }
-  }, [dispatch, settings.data, settings.isLoading]);
+  const { data, isLoading, error } = useFeatureData<SettingsData>({
+    selector: (state) => state.settings,
+    fetchAction: fetchSettings,
+  });
 
   const saveSettings = (newData: Partial<SettingsData>) => {
     dispatch(updateSettings(newData));
   };
 
   return {
-    ...settings,
+    data,
+    isLoading,
+    error,
     saveSettings,
   };
 };

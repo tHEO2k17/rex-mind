@@ -1,21 +1,27 @@
-import { useEffect, useCallback } from 'react';
-import { useAppDispatch, useAppSelector } from '@/shared/store/hooks';
-import { fetchMentorData, addUserMessage, sendMessage } from '../model/mentorSlice';
+import { useCallback } from "react";
+import {
+  fetchMentorData,
+  addUserMessage,
+  sendMessage,
+} from "../model/mentorSlice";
+import { MentorData } from "../model/types";
+import { useFeatureData } from "@/shared/hooks/useFeatureData";
+import { useAppDispatch } from "@/shared/store/hooks";
 
 export const useMentorViewModel = () => {
   const dispatch = useAppDispatch();
-  const mentor = useAppSelector((state) => state.mentor);
+  const { data, isLoading, error } = useFeatureData<MentorData>({
+    selector: (state) => state.mentor,
+    fetchAction: fetchMentorData,
+  });
 
-  useEffect(() => {
-    if (!mentor.data && !mentor.isLoading) {
-      dispatch(fetchMentorData());
-    }
-  }, [dispatch, mentor.data, mentor.isLoading]);
+  const sendNewMessage = useCallback(
+    (content: string) => {
+      dispatch(addUserMessage(content));
+      dispatch(sendMessage(content));
+    },
+    [dispatch],
+  );
 
-  const sendNewMessage = useCallback((content: string) => {
-    dispatch(addUserMessage(content));
-    dispatch(sendMessage(content));
-  }, [dispatch]);
-
-  return { ...mentor, sendNewMessage };
+  return { data, isLoading, error, sendNewMessage };
 };

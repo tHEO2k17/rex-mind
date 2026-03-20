@@ -1,18 +1,10 @@
-"use client"
-
-import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '@/shared/store/hooks';
-import { fetchIdentityData } from '../model/identitySlice';
+import { fetchIdentityData } from "../model/identitySlice";
+import { IdentityData } from "../model/types";
+import { useFeatureData } from "@/shared/hooks/useFeatureData";
 
 export const useIdentityViewModel = () => {
-  const dispatch = useAppDispatch();
-  const identity = useAppSelector((state) => state.identity);
-
-  useEffect(() => {
-    if (!identity.data && !identity.isLoading) {
-      dispatch(fetchIdentityData());
-    }
-  }, [dispatch, identity.data, identity.isLoading]);
-
-  return identity;
+  return useFeatureData<IdentityData>({
+    selector: (state) => state.identity,
+    fetchAction: fetchIdentityData,
+  });
 };

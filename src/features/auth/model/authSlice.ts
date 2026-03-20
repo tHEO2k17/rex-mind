@@ -1,7 +1,7 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { authService } from '../services/auth.service';
-import { LoginDTO, RegisterDTO, AuthResponse, User } from './types';
-import Cookies from 'js-cookie';
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { authService } from "../services/auth.service";
+import { LoginDTO, RegisterDTO, AuthResponse, User } from "./types";
+import Cookies from "js-cookie";
 
 interface AuthState {
   user: User | null;
@@ -18,42 +18,51 @@ const initialState: AuthState = {
 };
 
 export const loginThunk = createAsyncThunk<AuthResponse, LoginDTO>(
-  'auth/login',
+  "auth/login",
   async (credentials, thunkAPI) => {
     try {
       const response = await authService.login(credentials);
       return response;
     } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.message || 'Login failed');
+      return thunkAPI.rejectWithValue(error.message || "Login failed");
     }
-  }
+  },
 );
 
 export const registerThunk = createAsyncThunk<AuthResponse, RegisterDTO>(
-  'auth/register',
+  "auth/register",
   async (data, thunkAPI) => {
     try {
       const response = await authService.register(data);
       return response;
     } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.message || 'Registration failed');
+      return thunkAPI.rejectWithValue(error.message || "Registration failed");
     }
-  }
+  },
 );
 
+const persistAuthCookies = (user: User, token: string) => {
+  const options = { expires: 7, secure: true, sameSite: "strict" as const };
+  Cookies.set("token", token, options);
+  Cookies.set("user", JSON.stringify(user), options);
+};
+
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   reducers: {
-    setCredentials: (state, action: PayloadAction<{ user: User; token: string }>) => {
+    setCredentials: (
+      state,
+      action: PayloadAction<{ user: User; token: string }>,
+    ) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
     },
     logout: (state) => {
       state.user = null;
       state.token = null;
-      Cookies.remove('token');
-      Cookies.remove('user');
+      Cookies.remove("token");
+      Cookies.remove("user");
       authService.logout();
     },
   },
@@ -67,9 +76,8 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.user = action.payload.user;
         state.token = action.payload.token;
-        if (typeof window !== 'undefined') {
-          Cookies.set('token', action.payload.token, { expires: 7, secure: true, sameSite: 'strict' });
-          Cookies.set('user', JSON.stringify(action.payload.user), { expires: 7, secure: true, sameSite: 'strict' });
+        if (typeof window !== "undefined") {
+          persistAuthCookies(action.payload.user, action.payload.token);
         }
       })
       .addCase(loginThunk.rejected, (state, action) => {
@@ -84,9 +92,17 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.user = action.payload.user;
         state.token = action.payload.token;
-        if (typeof window !== 'undefined') {
-          Cookies.set('token', action.payload.token, { expires: 7, secure: true, sameSite: 'strict' });
-          Cookies.set('user', JSON.stringify(action.payload.user), { expires: 7, secure: true, sameSite: 'strict' });
+        if (typeof window !== "undefined") {
+          Cookies.set("token", action.payload.token, {
+            expires: 7,
+            secure: true,
+            sameSite: "strict",
+          });
+          Cookies.set("user", JSON.stringify(action.payload.user), {
+            expires: 7,
+            secure: true,
+            sameSite: "strict",
+          });
         }
       })
       .addCase(registerThunk.rejected, (state, action) => {

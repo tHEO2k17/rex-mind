@@ -1,14 +1,19 @@
-"use client"
+"use client";
 
-import { Button } from "@/shared/components/ui/button"
-import { Badge } from "@/shared/components/ui/badge"
-import { Avatar, AvatarFallback } from "@/shared/components/ui/avatar"
-import { Users, MessageCircle, Plus, ArrowRight, Globe } from "lucide-react"
-import { useCommunityViewModel } from "@/features/community/viewmodel/useCommunityViewModel"
-import { DashboardCard } from "@/shared/components/dashboard/DashboardCard"
-import { PageHeader } from "@/shared/components/dashboard/PageHeader"
-import { SkeletonCard } from "@/shared/components/dashboard/SkeletonCard"
-import { SkeletonHeader } from "@/shared/components/dashboard/SkeletonHeader"
+import { Button } from "@/shared/components/ui/button";
+import { Badge } from "@/shared/components/ui/badge";
+import { Avatar, AvatarFallback } from "@/shared/components/ui/avatar";
+import { Users, MessageCircle, Plus, ArrowRight, Globe } from "lucide-react";
+import { useCommunityViewModel } from "@/features/community/viewmodel/useCommunityViewModel";
+import { DashboardCard } from "@/shared/components/dashboard/DashboardCard";
+import { PageHeader } from "@/shared/components/dashboard/PageHeader";
+import { SkeletonCard } from "@/shared/components/dashboard/SkeletonCard";
+import { SkeletonHeader } from "@/shared/components/dashboard/SkeletonHeader";
+import {
+  Circle,
+  CommunityData,
+  Discussion,
+} from "@/features/community/model/types";
 
 export function CommunitySkeleton() {
   return (
@@ -31,25 +36,29 @@ export function CommunitySkeleton() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export function CommunityView({ initialData }: { initialData?: any }) {
-  const { data, isLoading } = useCommunityViewModel()
+export function CommunityView({
+  initialData,
+}: {
+  initialData?: CommunityData;
+}) {
+  const { data, isLoading } = useCommunityViewModel(initialData);
 
   if (isLoading && !data && !initialData) {
-    return <CommunitySkeleton />
+    return <CommunitySkeleton />;
   }
 
   const activeData = data || initialData;
   if (!activeData) return null;
 
-  const { myCircles, discoverCircles, recentDiscussions } = activeData
+  const { myCircles, discoverCircles, recentDiscussions } = activeData;
 
   return (
     <div className="space-y-6">
-      <PageHeader 
-        title="Community Circles" 
+      <PageHeader
+        title="Community Circles"
         description="Connect with growth-minded peers for accountability and support."
       >
         <Button className="shadow-lg shadow-primary/20">
@@ -61,7 +70,9 @@ export function CommunityView({ initialData }: { initialData?: any }) {
       {/* Stats */}
       <div className="grid gap-4 md:grid-cols-3">
         <DashboardCard title="My Circles" icon={Users}>
-          <p className="text-2xl font-bold text-foreground">{myCircles?.length || 0}</p>
+          <p className="text-2xl font-bold text-foreground">
+            {myCircles?.length || 0}
+          </p>
         </DashboardCard>
         <DashboardCard title="Discussions" icon={MessageCircle}>
           <p className="text-2xl font-bold text-foreground">14</p>
@@ -76,17 +87,22 @@ export function CommunityView({ initialData }: { initialData?: any }) {
         <div className="space-y-4 lg:col-span-2">
           <h2 className="text-lg font-bold text-foreground">My Circles</h2>
           <div className="grid gap-4 md:grid-cols-2">
-            {myCircles?.map((circle: any) => (
-              <DashboardCard 
-                key={circle.name} 
+            {myCircles?.map((circle: Circle) => (
+              <DashboardCard
+                key={circle.name}
                 title={circle.name}
                 description={circle.focus}
                 className={circle.isActive ? "border-primary/50" : ""}
-                headerAction={circle.isActive && (
-                  <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
-                    Active
-                  </Badge>
-                )}
+                headerAction={
+                  circle.isActive && (
+                    <Badge
+                      variant="secondary"
+                      className="bg-primary/10 text-primary border-primary/20"
+                    >
+                      Active
+                    </Badge>
+                  )
+                }
               >
                 <div className="space-y-4">
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -94,8 +110,12 @@ export function CommunityView({ initialData }: { initialData?: any }) {
                     {circle.members} members
                   </div>
                   <div className="rounded-md bg-secondary/50 p-3 border border-border/50">
-                    <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Recent Discussion</p>
-                    <p className="mt-1 text-sm text-foreground font-medium">{circle.recentTopic}</p>
+                    <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">
+                      Recent Discussion
+                    </p>
+                    <p className="mt-1 text-sm text-foreground font-medium">
+                      {circle.recentTopic}
+                    </p>
                   </div>
                   <Button variant="outline" className="w-full group">
                     Enter Circle
@@ -107,16 +127,20 @@ export function CommunityView({ initialData }: { initialData?: any }) {
           </div>
 
           {/* Discover Circles */}
-          <h2 className="text-lg font-bold text-foreground mt-8">Discover Circles</h2>
+          <h2 className="text-lg font-bold text-foreground mt-8">
+            Discover Circles
+          </h2>
           <div className="grid gap-4 md:grid-cols-2">
-            {discoverCircles?.map((circle: any) => (
-              <DashboardCard 
-                key={circle.name} 
+            {discoverCircles?.map((circle: Circle) => (
+              <DashboardCard
+                key={circle.name}
                 title={circle.name}
                 description={circle.focus}
               >
                 <div className="space-y-4">
-                  <p className="text-sm text-muted-foreground leading-relaxed">{circle.description}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {circle.description}
+                  </p>
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Users className="h-4 w-4" />
                     {circle.members} members
@@ -132,39 +156,51 @@ export function CommunityView({ initialData }: { initialData?: any }) {
 
         {/* Recent Activity */}
         <div className="space-y-4">
-          <h2 className="text-lg font-bold text-foreground">Recent Discussions</h2>
+          <h2 className="text-lg font-bold text-foreground">
+            Recent Discussions
+          </h2>
           <DashboardCard title="" className="p-0">
             <div className="divide-y divide-border">
-              {recentDiscussions?.map((discussion: any, index: number) => (
-                <div key={index} className="p-4 transition-colors hover:bg-secondary/10">
-                  <div className="flex items-start gap-3">
-                    <Avatar className="h-9 w-9 border border-border">
-                      <AvatarFallback className="bg-secondary text-xs font-bold text-foreground">
-                        {discussion.author.split(" ").map((n: string) => n[0]).join("")}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div className="flex-1">
-                      <p className="text-sm font-semibold text-foreground leading-tight">{discussion.topic}</p>
-                      <div className="mt-1 flex items-center gap-2 text-[10px] text-muted-foreground font-medium uppercase tracking-tight">
-                        <span>{discussion.author}</span>
-                        <span className="text-border">•</span>
-                        <span>{discussion.circle}</span>
-                      </div>
-                      <div className="mt-3 flex items-center gap-4 text-[10px] text-muted-foreground">
-                        <span className="flex items-center gap-1">
-                          <MessageCircle className="h-3 w-3" />
-                          {discussion.replies} replies
-                        </span>
-                        <span>{discussion.time}</span>
+              {recentDiscussions?.map(
+                (discussion: Discussion, index: number) => (
+                  <div
+                    key={index}
+                    className="p-4 transition-colors hover:bg-secondary/10"
+                  >
+                    <div className="flex items-start gap-3">
+                      <Avatar className="h-9 w-9 border border-border">
+                        <AvatarFallback className="bg-secondary text-xs font-bold text-foreground">
+                          {discussion.author
+                            .split(" ")
+                            .map((n: string) => n[0])
+                            .join("")}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1">
+                        <p className="text-sm font-semibold text-foreground leading-tight">
+                          {discussion.topic}
+                        </p>
+                        <div className="mt-1 flex items-center gap-2 text-[10px] text-muted-foreground font-medium uppercase tracking-tight">
+                          <span>{discussion.author}</span>
+                          <span className="text-border">•</span>
+                          <span>{discussion.circle}</span>
+                        </div>
+                        <div className="mt-3 flex items-center gap-4 text-[10px] text-muted-foreground">
+                          <span className="flex items-center gap-1">
+                            <MessageCircle className="h-3 w-3" />
+                            {discussion.replies} replies
+                          </span>
+                          <span>{discussion.time}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ),
+              )}
             </div>
           </DashboardCard>
         </div>
       </div>
     </div>
-  )
+  );
 }

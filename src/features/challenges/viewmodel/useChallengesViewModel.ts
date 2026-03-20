@@ -1,18 +1,16 @@
-import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '@/shared/store/hooks';
-import { fetchChallengesData, seedChallengesData } from '../model/challengesSlice';
+import {
+  fetchChallengesData,
+  seedChallengesData,
+} from "../model/challengesSlice";
+import { ChallengesData } from "../model/types";
+import { useFeatureData } from "@/shared/hooks/useFeatureData";
+import { useAppDispatch } from "@/shared/store/hooks";
 
-export const useChallengesViewModel = (initialData?: any) => {
-  const dispatch = useAppDispatch();
-  const { data, isLoading, error } = useAppSelector((state) => state.challenges);
-
-  useEffect(() => {
-    if (initialData && !data) {
-      dispatch(seedChallengesData(initialData));
-    } else if (!data && !isLoading) {
-      dispatch(fetchChallengesData());
-    }
-  }, [dispatch, data, isLoading, initialData]);
-
-  return { data, isLoading, error };
+export const useChallengesViewModel = (initialData?: ChallengesData) => {
+  return useFeatureData<ChallengesData>({
+    selector: (state) => state.challenges,
+    fetchAction: fetchChallengesData,
+    seedAction: seedChallengesData,
+    initialData,
+  });
 };
