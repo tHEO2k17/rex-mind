@@ -8,6 +8,25 @@ RexMind uses a **Hybrid Rendering Strategy** with Next.js 14, combining the spee
 2. **Hydration**: Data is passed to the `StoreProvider`, which populates the Redux store on mount.
 3. **Client-Side SWR**: Features use custom ViewModels to manage local state and trigger re-fetches when necessary.
 
+### 2.1 Hydration Sequence
+```mermaid
+sequenceDiagram
+    participant Browser
+    participant RSC as Next.js Server (RSC)
+    participant SP as StoreProvider
+    participant R as Redux Store
+    participant V as View (Client)
+
+    Browser->>RSC: Route Request
+    RSC->>RSC: Fetch Initial Data (await)
+    RSC-->>Browser: HTML Body + initialData
+    Browser->>SP: Mount StoreProvider(initialData)
+    SP->>R: dispatch(hydrate(initialData))
+    Browser->>V: Mount View Component
+    V->>R: useSelector(selectFeatureData)
+    R-->>V: Hydrated State
+```
+
 ## 3. State Management
 - **Redux Toolkit**: Used for global cross-cutting concerns (Auth, Identity, Notifications).
 - **React State**: Used for local component concerns (Forms, UI toggles).

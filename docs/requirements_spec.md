@@ -3,6 +3,22 @@
 ## 1. Overview
 RexMind is an AI-powered "Human Potential Operating System" designed to help high-performers quantify their cognitive patterns, align their daily actions with a target identity, and leverage AI mentorship to overcome growth plateaus.
 
+### 1.1 System Context Diagram
+
+```mermaid
+C4Context
+    title System Context Map for RexMind
+    
+    Person(user, "User", "High-performer seeking cognitive growth.")
+    System(rexmind, "RexMind Platform", "Provides insights, identity building, and AI mentorship.")
+    System_Ext(backend, "Mock Backend (json-server)", "Sources user data, challenges, and insights.")
+    System_Ext(ai_engine, "AI Core (Simulated)", "Detects patterns and generates mentor responses.")
+
+    Rel(user, rexmind, "Interacts with dashboard")
+    Rel(rexmind, backend, "Fetches/Persists state")
+    Rel(rexmind, ai_engine, "Requests analysis")
+```
+
 ## 2. Assumptions
 - **User Privacy**: All AI analysis is performed on user-consented data.
 - **Scalability**: The system is designed for a global user base with low-latency requirements.
@@ -70,17 +86,42 @@ RexMind is an AI-powered "Human Potential Operating System" designed to help hig
 - **NFR-1.4 Accessibility**: UI must achieve WCAG 2.1 Level AA compliance.
 
 ## 8. User Flows
-### Flow 1: Daily Focus Check-in
-1. User logs in.
-2. User lands on Dashboard.
-3. User views "Today's Focus" (AI-generated tasks).
-4. User completes a task and sees the alignment gauge move.
 
-### Flow 2: Community Participation
-1. User navigates to "Community".
-2. User views "Discover Circles".
-3. User clicks "Join Circle".
-4. User enters Circle and views the latest discussion.
+### 8.1 Onboarding & Daily Check-in Flow
+
+```mermaid
+graph TD
+    A[User Opens App] --> B{Authenticated?}
+    B -- No --> C[Register / Login]
+    C --> D[Initial Data Hydration]
+    B -- Yes --> D
+    D --> E[Dashboard Rendered]
+    E --> F[View Daily Focus]
+    F --> G[Complete Task]
+    G --> H[Recalculate Alignment]
+    H --> I[Sync to Backend]
+```
+
+### 8.2 Community Engagement Flow
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant CP as Community Page
+    participant S as Community Service
+    participant B as Backend
+
+    U->>CP: Views Discover Circles
+    CP->>S: getDiscoverCircles()
+    S->>B: GET /discoverCircles
+    B-->>S: Circle Data
+    S-->>CP: Display Circles
+    U->>CP: Clicks "Join Circle"
+    CP->>S: joinCircle(name)
+    S->>B: POST /myCircles
+    B-->>S: Success
+    S-->>CP: Update UI Local State
+```
 
 ## 9. Business Rules
 - **BR-1**: A user can belong to a maximum of 5 active Community Circles.

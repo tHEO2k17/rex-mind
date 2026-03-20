@@ -8,6 +8,28 @@ RexMind uses a **Premium Neo-Skeuomorphic** aesthetic, combining clean glassmorp
 - **Dashboard Components**: Molecule-level components (DashboardCard, ProgressBar, SkeletonCard).
 - **Feature Views**: Organism-level layouts that assemble features into pages.
 
+### 2.1 C4 Container Diagram
+```mermaid
+C4Container
+    title Container Diagram for RexMind
+    
+    Person(user, "User", "Interacts via Web Browser")
+    
+    Container_Boundary(spa, "RexMind Web App") {
+        Container(rsc, "Next.js Server (RSC)", "React Server Components", "Handles initial data fetching and HTML rendering.")
+        Container(redux, "Redux Store", "Global State Management", "Manages hydrated data and optimistic updates.")
+        Container(ui, "React UI (Client)", "Radix UI / Tailwind", "Handles interactivity and user input.")
+    }
+    
+    System_Ext(api, "API Layer / Mock Backend", "Provides JSON data persistent storage.")
+
+    Rel(user, rsc, "Visits Page", "HTTPS")
+    Rel(rsc, api, "Fetches Data", "HTTPS/JSON")
+    Rel(rsc, redux, "Hydrates", "RSC Injection")
+    Rel(ui, redux, "Reads/Writes", "Hooks")
+    Rel(ui, api, "Async Updates", "Axios/JSON")
+```
+
 ## 3. Theme Tokens
 - **Colors**:
   - `primary`: Vibrant Indigo/Violet gradient for growth elements.

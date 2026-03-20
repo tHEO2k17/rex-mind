@@ -17,3 +17,13 @@ Growth Challenges are structured tasks designed to push users out of their comfo
 - **Mindset**: Challenges focused on reframing and belief systems.
 - **Discipline**: Habit-based challenges for consistency.
 - **Skill**: Acquisition of new technical or cognitive abilities.
+
+### 4.1 Challenge State Transitions
+```mermaid
+stateDiagram-v2
+    [*] --> Available
+    Available --> Active: User Starts Challenge
+    Active --> Completed: Task Completion = 100%
+    Active --> Available: User Resets/Quits
+    Completed --> [*]
+```
